@@ -76,6 +76,7 @@ public class testTask_StepDef {
     public void user_clicks_on_back_to_offer_button() throws Throwable {
        homepage.backToOffer();
        Thread.sleep(2000);
+       bookingPage.availabilityPagePassing();
     }
 
     @Then("^Booking page displayed again$")

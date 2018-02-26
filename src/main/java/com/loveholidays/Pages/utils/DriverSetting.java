@@ -1,5 +1,6 @@
 package com.loveholidays.Pages.utils;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,6 +18,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+
+
 /*
 *     Janusz Ryn 23-02-2018
 */
@@ -24,7 +27,6 @@ import java.util.concurrent.TimeUnit;
 public class DriverSetting {
 
     public static WebDriver driver;
-
     //static String baseUrl;
     public static String baseUrl = "https://www.loveholidays.com/";
 
@@ -34,16 +36,8 @@ public class DriverSetting {
 
     public static void setWebdriver() throws Exception {
 
-        // Firefox Driver - enable if you would like to verify in Firefox
-        /*        System.setProperty("webdriver.gecko.driver","../Selenium/geckodriver");
-        driver = new FirefoxDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        */
-
-        // Google Chrome Driver - enable if you would like to verify in Google Chrome
-        System.setProperty("webdriver.chrome.driver", "../Selenium/chromedriver");
+        WebDriverManager.chromedriver().setup();
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-
         capabilities.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
         capabilities.setCapability("chrome.switches", Arrays.asList("--incognito"));
         ChromeOptions options = new ChromeOptions();

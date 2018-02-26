@@ -18,6 +18,7 @@ public class BookingPage {
     private @FindBy(css = ".book-basket__hotel-details__destination") WebElement hotelLocation;
     private @FindBy(css = ".notifications-layout") WebElement sessionExpiredNotification;
     private @FindBy(css = ".notifications-layout__close") WebElement closeNotificationButton;
+    private @FindBy(css = ".cheap-offer-view__btn.booking-link.btn.btn-success") WebElement availabilityPageHotelProceedButton;
 
     public void waitForBookBasket()
     {
@@ -38,6 +39,15 @@ public class BookingPage {
             closeNotificationButton.click();
         }
     }
+
+    public void availabilityPagePassing(){
+        if (DriverSetting.isElementPresent(availabilityPageHotelProceedButton))
+        {
+            availabilityPageHotelProceedButton.click();
+            System.out.println("WARNING! - Unexpected - Availability Page displayed");
+        }
+    }
+
 
     public String getHotelLocation() {
         return hotelLocation.getText();
