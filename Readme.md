@@ -11,7 +11,6 @@ Source code files:
 BookingPage.class
 Homepage.class
 DriverSetting.class
-
 TestTask.feature
 testTask_StepDef.class
 
