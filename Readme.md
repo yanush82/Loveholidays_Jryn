@@ -8,11 +8,11 @@ Test is executable either from testTask_StepDef.class and TestTask.feature files
 
 Source code files:
 
-BookingPage.class
-Homepage.class
-DriverSetting.class
-TestTask.feature
-testTask_StepDef.class
+- BookingPage.class
+- Homepage.class
+- DriverSetting.class
+- TestTask.feature
+- testTask_StepDef.class
 
 
 
