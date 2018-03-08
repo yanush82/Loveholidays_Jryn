@@ -1,12 +1,15 @@
 package com.loveholidays.Pages.homepage;
 
 import com.loveholidays.Pages.utils.DriverSetting;
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 /*
 *     Janusz Ryn 23-02-2018
 */
+
+
 
 public class Homepage {
 
@@ -36,6 +39,16 @@ public class Homepage {
     private @FindBy(css = ".return-to-offer-large__details__name") WebElement hotelName;
     private @FindBy(css = ".homepage-desktop-layout__return-to-offer") WebElement backToOfferBanner;
     private @FindBy(css = ".return-to-offer-large__cta .custom-button") WebElement backToOfferButton;
+
+
+    //Search
+    private @FindBy(css = "#searchUnitDestinationInput") WebElement searchInputField;
+    private @FindBy(css = ".select-list__list__element__span") WebElement selectPositionList;
+    private @FindBy(css = ".search-unit-flight-and-hotel__cta__inner") WebElement searchButton;
+
+
+
+    private String searchPharse = "spain"  ;
 
 
     public boolean isLogoDisplayed() {
@@ -68,6 +81,27 @@ public class Homepage {
 
     public void backToOffer(){
         backToOfferButton.click();
+    }
+
+
+    public void SearchPharse()
+    {
+        searchInputField.sendKeys(searchPharse);
+    }
+
+    public void clickSearchButton()
+    {
+        searchButton.click();
+    }
+
+    public void waitForSearch()
+    {
+        DriverSetting.waitUntilLoaded(searchButton);
+    }
+
+    public void selectPositionFromList(){
+        DriverSetting.waitUntilLoaded(selectPositionList);
+        selectPositionList.click();
     }
 
 }

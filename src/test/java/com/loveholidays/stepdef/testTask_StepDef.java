@@ -3,8 +3,10 @@ package com.loveholidays.stepdef;
 import com.loveholidays.Pages.homepage.*;
 
 import com.loveholidays.Pages.bookingPage.BookingPage;
+import com.loveholidays.Pages.searchResultPage.SearchResultPage;
 import com.loveholidays.Pages.utils.DriverSetting;
 import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -23,6 +25,7 @@ public class testTask_StepDef {
 
     private Homepage homepage;
     private BookingPage bookingPage;
+    private SearchResultPage searchResultPage;
     private WebDriver driver;
     private String baseUrl;
     private boolean acceptNextAlert = true;
@@ -38,9 +41,10 @@ public class testTask_StepDef {
         this.driver = DriverSetting.driver;
         homepage = PageFactory.initElements(driver, Homepage.class);
         bookingPage = PageFactory.initElements(driver, BookingPage.class);
+        searchResultPage = PageFactory.initElements(driver, SearchResultPage.class);
+
     }
 
-    @Test
     @Given("^Booking page displayed$")
     public void booking_page_displayed() throws Throwable {
         driver.get(baseUrl + "book/flight-and-hotel/offer-summary.html?shortref=LA9YVPJH&state=AwoUKFAAIKSCaCeCjLYYEIABgHA");
@@ -53,12 +57,12 @@ public class testTask_StepDef {
         this.bookingPgHotelName = bookingPage.getHotelName();
     }
 
-    @Given("^User clicks on LoveHolidays Logo$")
+    @And("^User clicks on LoveHolidays Logo$")
     public void user_clicks_on_LoveHolidays_Logo() throws Throwable {
         bookingPage.goToHomepage();
     }
 
-    @Given("^Homepage is displayed$")
+    @And("^Homepage is displayed$")
     public void homepage_is_displayed() throws Throwable {
         homepage.waitForActiveButton();
         homepage.isHomepageLoaded();
@@ -94,6 +98,38 @@ public class testTask_StepDef {
     @After
      public void tearDown() throws Exception {
         driver.quit();
+    }
+
+    @Given("^Homepage opened$")
+    public void homepage_opened() throws Throwable {
+        driver.get(baseUrl);
+        homepage.waitForSearch();
+        homepage.isLogoDisplayed();
+    }
+
+    @And("^User populates search$")
+    public void user_populates_search() throws Throwable {
+        homepage.SearchPharse();
+        homepage.selectPositionFromList();
+        Thread.sleep(1000);
+    }
+
+    @When("^User clicks on search button$")
+    public void user_clicks_on_search_button() throws Throwable {
+        homepage.clickSearchButton();
+        Thread.sleep(1000);
+        homepage.clickSearchButton();
+    }
+
+    @Then("^Search result page displayed$")
+    public void search_result_page_displayed() throws Throwable {
+        searchResultPage.getNumberOfSearchResults();
+
+    }
+
+    @And("^Number of elements is (\\d+)$")
+    public void number_of_elements_is(int arg1) throws Throwable {
+        tearDown();
     }
 
 
